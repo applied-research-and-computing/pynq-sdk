@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# UV
+uv.lock
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Type checking
+.mypy_cache/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PYNQ / Xilinx build artefacts
+*.bit
+*.hwh
+*.ltx
+*.runs/
+*.ip_user_files/
+*.xpr
+vivado*.jou
+vivado*.log
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Planning and analysis documents generated during development
+# (README.md and CLAUDE.md are intentionally tracked)
+ARCHITECTURE_REVIEW.md
+SDK_AUDIT_REPORT.md
+SYSTEM_FLOW_DIAGRAM.md
+SYSTEM_FLOW.md
+PYNQ_USER_WORKFLOW.md
+SEB.MD
+
+# Claude Code session files
+.seb/

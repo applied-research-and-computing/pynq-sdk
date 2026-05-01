@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pynq-instrument"
+version = "0.1.0"
+description = "Carbon PYNQ Instrument SDK"
+requires-python = ">=3.8"
+dependencies = [
+    "zeroconf>=0.131.0",
+    # pynq is NOT listed here — it is pre-installed by the PYNQ OS image and
+    # has ARM-specific binaries unavailable on x86. Add it via the [pynq] extra
+    # when installing on hardware, or let the system Python provide it.
+]
+
+[project.optional-dependencies]
+# x86 development tools. pynq is intentionally absent — it is pre-installed by
+# the PYNQ OS image and has ARM-specific binaries not available on x86.
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    "numpy>=1.20",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+pynq-instrument = "pynq_instrument.cli:main"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "-v"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.mypy]
+python_version = "3.8"
+ignore_missing_imports = true
