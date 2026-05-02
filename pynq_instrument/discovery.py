@@ -8,7 +8,6 @@ from typing import Optional
 logger = logging.getLogger(__name__)
 
 _SERVICE_TYPE = "_hislip._tcp.local."
-_USB_STATIC_IP = "192.168.2.1"
 
 
 class MDNSAdvertiser:
@@ -17,10 +16,6 @@ class MDNSAdvertiser:
 
     Service type: ``_hislip._tcp.local.``
     Hostname: ``{prefix}-{last4mac}.local``
-
-    On USB-OTG only deployments (RNDIS/ECM gadget at 192.168.2.1) mDNS may
-    not traverse the host stack reliably; a static-IP fallback message is
-    always printed so clients can connect directly.
     """
 
     def __init__(
@@ -58,7 +53,6 @@ class MDNSAdvertiser:
 
         logger.info("mDNS: advertising %s port %d", service_name, self.port)
         print(f"Instrument available: {hostname}.local:{self.port}")
-        print(f"USB mode: connect to {_USB_STATIC_IP}:{self.port}")
 
         try:
             from zeroconf import ServiceInfo, Zeroconf  # type: ignore[import]

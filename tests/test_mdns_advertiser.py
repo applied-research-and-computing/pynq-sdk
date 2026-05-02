@@ -1,5 +1,5 @@
 """
-Tests for MDNSAdvertiser: Zeroconf service registration and USB fallback path.
+Tests for MDNSAdvertiser: Zeroconf service registration.
 Uses monkeypatching to avoid real network operations.
 """
 
@@ -13,14 +13,15 @@ from pynq_instrument.discovery import MDNSAdvertiser
 
 
 class TestMDNSAdvertiser:
-    def test_usb_fallback_message_printed(self, capsys):
+    def test_startup_message_printed(self, capsys):
         advertiser = MDNSAdvertiser("Acme", "TestBox", port=4880)
         with patch("pynq_instrument.discovery.MDNSAdvertiser._local_addresses", return_value=[]):
             with patch("pynq_instrument.discovery.MDNSAdvertiser._last4_mac", return_value="ABCD"):
                 advertiser._register()
 
         captured = capsys.readouterr()
-        assert "192.168.2.1:4880" in captured.out
+        assert "ABCD" in captured.out
+        assert "4880" in captured.out
 
     def test_hostname_uses_last4_mac(self, capsys):
         advertiser = MDNSAdvertiser("Acme", "TestBox", port=4880)
